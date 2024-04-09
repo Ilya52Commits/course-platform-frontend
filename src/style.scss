@@ -1,0 +1,26 @@
+@import "style/__base";
+
+.container {
+  max-width: 1700px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+// Header
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+// Main 
+.buttons-main {
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+  margin-top: 2rem;
+}
+
+.main-content {
+  margin-top: 9rem;
+}
