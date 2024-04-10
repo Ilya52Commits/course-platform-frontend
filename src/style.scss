@@ -17,10 +17,25 @@
 .buttons-main {
   display: flex;
   justify-content: space-between;
-  width: 280px;
   margin-top: 2rem;
+  width: 400px;
+  button {
+    @include btn(width, 10rem, font-size, 1rem)
+  }
 }
 
 .main-content {
   margin-top: 9rem;
+} 
+
+.sign-in {
+  @include center-page; // не проверял
+
+  .sign-block {
+    @include sign-block;
+
+    .sing-content {
+      @include sign-content;
+    }
+  }
 }

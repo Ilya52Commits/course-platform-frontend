@@ -1,5 +1,4 @@
-
-export default function Header() {
+export default function Header(signIn) {
   return (
     <header>
       <div className="container">

@@ -7,9 +7,10 @@ import ProfilesPage from './pages/ProfilesPage'
 
 import './style.scss'
 import NotFoundPage from './pages/NotFoundPage'
+import SignInUpPage from './pages/SignInUpPage'
 
 const router = createBrowserRouter([
-  {
+  { 
     path: '/',
     element: <HomePage />,
     errorElement: <NotFoundPage />,
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
     path: '/profile',
     element: <ProfilesPage />,
   },
+  {
+    path: '/sign-in',
+    element: <SignInUpPage />, 
+  },
+
 
 ])
 

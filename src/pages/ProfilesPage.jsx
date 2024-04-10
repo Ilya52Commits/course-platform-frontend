@@ -1,7 +1,14 @@
+import Header from "../components/HomePageComp/Header"
+
 export default function ProfilesPage() {
   return (
     <>
-     <h1>Profiles Page</h1>
+      <Header />
+      <main>
+        <div className="container">
+          <h1>Your profile</h1>
+        </div>
+      </main>
     </>
   )
 }

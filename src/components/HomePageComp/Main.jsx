@@ -5,10 +5,10 @@ export default function Main() {
         <div className="main-content">
           <h1>Platform courses</h1>
           <div className="buttons-main">
-            <button className="btn">
+            <button>
               Create a course
             </button>
-            <button className="btn">
+            <button>
               Open course
             </button>
           </div>
