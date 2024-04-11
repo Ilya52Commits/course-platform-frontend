@@ -1,11 +1,8 @@
+// Импортирование базовых стилей
 @import "style/__base";
 
-.container {
-  max-width: 1700px;
-  height: 100%;
-  margin: 0 auto;
-}
 
+/* HomePage */ 
 // Header
 .header-content {
   display: flex;
@@ -13,7 +10,7 @@
   padding: 15px;
 }
 
-// Main 
+// Main
 .buttons-main {
   display: flex;
   justify-content: space-between;
@@ -28,6 +25,8 @@
   margin-top: 9rem;
 } 
 
+
+/* Sign-in */
 .sign-in {
   @include center-page; // не проверял
 

@@ -43,6 +43,14 @@ main {
   height: 90vh;
 }
 
+// Контейнер для каркаса страницы
+.container {
+  max-width: 1700px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+
 /* Стилизация компонентов страницы */
 // Стилизация кнопок сайта
 @mixin btn($width, $value-width, $font-size, $font-size-value) {
