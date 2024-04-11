@@ -1,5 +1,5 @@
-import Header from "../components/HomePageComp/Header"
-import Main from "../components/HomePageComp/Main"
+import Header from "../components/HomePageComp/Header";
+import Main from "../components/HomePageComp/Main";
 
 export default function HomePage() {
   return (
@@ -7,5 +7,5 @@ export default function HomePage() {
       <Header />
       <Main />
     </>
-  )
+  );
 }

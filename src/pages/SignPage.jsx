@@ -1,4 +1,4 @@
-import Header from "../components/HomePageComp/Header"
+import Header from "../components/HomePageComp/Header";
 
 export default function SignInUpPage() {
   return (
@@ -9,13 +9,11 @@ export default function SignInUpPage() {
           <div className="sign-in">
             <div className="sign-block">
               <div className="sing-content">
-                <h3>
-                  Войти
-                </h3>
+                <h3>Войти</h3>
                 <form>
-                  <input type="email"/>
+                  <input type="email" />
                   <input type="password" />
-                  <input type="submit" value={"Войти"}/>
+                  <input type="submit" value={"Войти"} />
                 </form>
               </div>
             </div>
@@ -23,5 +21,5 @@ export default function SignInUpPage() {
         </div>
       </main>
     </>
-  )
+  );
 }

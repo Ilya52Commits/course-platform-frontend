@@ -1,8 +1,7 @@
 // Импортирование базовых стилей
 @import "style/__base";
 
-
-/* HomePage */ 
+/* HomePage */
 // Header
 .header-content {
   display: flex;
@@ -11,20 +10,19 @@
 }
 
 // Main
-.buttons-main {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-  width: 400px;
-  button {
-    @include btn(width, 10rem, font-size, 1rem)
-  }
-}
-
 .main-content {
   margin-top: 9rem;
-} 
 
+  .buttons-main {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    width: 400px;
+    button {
+      @include btn(width, 10rem, font-size, 1rem);
+    }
+  }
+}
 
 /* Sign-in */
 .sign-in {

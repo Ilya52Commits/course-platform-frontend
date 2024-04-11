@@ -1,41 +1,39 @@
 //#region Импортирование
 // Импортирование React
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Импортирование React страниц
-import HomePage from './pages/HomePage'
-import ProfilesPage from './pages/ProfilesPage'
-import NotFoundPage from './pages/NotFoundPage'
-import SignInUpPage from './pages/SignPage'
+import HomePage from "./pages/HomePage";
+import ProfilesPage from "./pages/ProfilesPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import SignInUpPage from "./pages/SignPage";
 
 // Импортирование стилей
-import './style.scss'
+import "./style.scss";
 //#endregion
 
-// Структура нескольких страниц 
+// Структура нескольких страниц
 const router = createBrowserRouter([
-  { 
-    path: '/',
+  {
+    path: "/",
     element: <HomePage />,
     errorElement: <NotFoundPage />,
   },
   {
-    path: '/profile',
+    path: "/profile",
     element: <ProfilesPage />,
   },
   {
-    path: '/sign-in',
-    element: <SignInUpPage />, 
+    path: "/sign-in",
+    element: <SignInUpPage />,
   },
-
-
-])
+]);
 
 // Импортирование React-компонентов в блок root
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
-)
+);
