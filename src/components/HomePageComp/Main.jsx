@@ -3,10 +3,10 @@ export default function Main() {
     <main>
       <div className="container">
         <div className="main-content">
-          <h1>Platform courses</h1>
+          <h1>Разместите свои курсы</h1>
           <div className="buttons-main">
-            <button>Create a course</button>
-            <button>Open course</button>
+            <button>Создать курс</button>
+            <button>Открыть курс</button>
           </div>
         </div>
       </div>
