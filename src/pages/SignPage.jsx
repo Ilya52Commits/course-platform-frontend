@@ -1,4 +1,4 @@
-import Header from "../components/HomePageComp/Header";
+import Header from "../components/Header";
 
 export default function SignInUpPage() {
   return (

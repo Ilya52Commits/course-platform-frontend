@@ -1,4 +1,4 @@
-import Header from "../components/HomePageComp/Header"
+import Header from "../components/Header";
 
 export default function ProfilesPage() {
   return (
@@ -10,5 +10,5 @@ export default function ProfilesPage() {
         </div>
       </main>
     </>
-  )
+  );
 }
