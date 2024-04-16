@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import Main from "../components/Main";
+import Header from "../components/Header.jsx";
+import Main from "../components/Main.jsx";
 
 export default function HomePage() {
   return (
