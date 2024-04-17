@@ -4,13 +4,14 @@ import (
 	"log"
 	"net/http"
 
-	"domain/controllers"
+	"github.com/Ilya52Commits/course-platform/controllers"
 )
 
 func main() {
-	http.HandleFunc("/", controllers.SayHello)           // Устанавливаем роутер
-	err := http.ListenAndServe(":8080", nil) // устанавливаем порт веб-сервера
-	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
+	http.HandleFunc("/", controllers.SayHello)
+	http.HandleFunc("/good-bye", controllers.SayGoodBye)
+	err := http.ListenAndServe(":8080", nil)
+	if err == nil {
+		log.Fatal("ListenAndServer: ", err)
 	}
 }
