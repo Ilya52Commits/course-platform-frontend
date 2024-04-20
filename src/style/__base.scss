@@ -83,12 +83,12 @@ header {
 
 /* Стилизация блока входа/регистрации */
 // Стилизация родительского блока
-@mixin sign-block {
+@mixin sign-block($heightValue) {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 500px;
-  height: 410px;
+  height: $heightValue;
   box-shadow: 1px 1px 5px #000;
   border-radius: 15px;
 }
@@ -97,7 +97,7 @@ header {
   width: 377px;
 
   form {
-    input[type="email"],
+    input[type="text"],
     [type="password"] {
       @include input-text;
     }

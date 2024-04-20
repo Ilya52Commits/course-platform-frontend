@@ -20,13 +20,13 @@
       font-size: 19px;
     }
   }
-  &-sign {
+  .header-navigation {
+    display: flex;
+    justify-content: space-between;
     text-align: center;
-    img {
-      width: 28px;
-    }
+    width: 170px;
     p {
-      font-size: 13px;
+      font-size: 15px;
     }
   }
 }
@@ -46,15 +46,30 @@
   }
 }
 
-/* Sign-in */
+/* Login */
 .sign-in {
   @include center-page;
-  height: 90vh;
 
   .sign-block {
-    @include sign-block;
+    @include sign-block(410px);
 
-    .sing-content {
+    .sign-content {
+      @include sign-content;
+    }
+  }
+}
+
+/* Register */
+.sign {
+  @include center-page;
+  h3 {
+    font-size: 23px;
+  }
+
+  .sign-block {
+    @include sign-block(500px);
+
+    .sign-content {
       @include sign-content;
     }
   }

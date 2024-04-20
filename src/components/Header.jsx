@@ -9,10 +9,15 @@ export default function Header() {
             <img src="/src/assets/images/learning.svg" alt="logo" />
             <p>Platform Courses</p>
           </Link>
-          <Link to={"/sign-in"} className="header-content-sign">
-            <img src="/src/assets/images/user.svg" alt="user" />
-            <p>Войти</p>
-          </Link>
+          <div className="header-navigation">
+            <Link to={"/login"}>
+              <p>Войти</p>
+            </Link>
+            <p>|</p>
+            <Link to={"/register"}>
+              <p>Регистрация</p>
+            </Link>
+          </div>
         </div>
       </div>
     </header>
