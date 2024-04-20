@@ -7,6 +7,7 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
@@ -21,8 +22,12 @@ export default function RegisterPage() {
       }),
     });
 
-    return navigate("/login");
+    setRedirect(true);
   };
+
+  if (redirect) {
+    return navigate("/login");
+  }
 
   return (
     <>

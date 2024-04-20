@@ -1,6 +1,46 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function Header() {
+Header.propTypes = {
+  name: PropTypes.string.isRequired,
+  setName: PropTypes.func.isRequired,
+};
+
+export default function Header(props) {
+  const logout = async () => {
+    await fetch("http://localhost:8000/api/logout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+
+    props.setName("");
+  };
+
+  let menu;
+
+  if (!props.name) {
+    menu = (
+      <div className="header-navigation">
+        <Link to={"/login"}>
+          <p>Войти</p>
+        </Link>
+        <p>|</p>
+        <Link to={"/register"}>
+          <p>Регистрация</p>
+        </Link>
+      </div>
+    );
+  } else {
+    menu = (
+      <div className="header-navigation">
+        <Link to={"/login"} onClick={logout}>
+          <p>Выйти</p>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <header>
       <div className="container">
@@ -9,15 +49,7 @@ export default function Header() {
             <img src="/src/assets/images/learning.svg" alt="logo" />
             <p>Platform Courses</p>
           </Link>
-          <div className="header-navigation">
-            <Link to={"/login"}>
-              <p>Войти</p>
-            </Link>
-            <p>|</p>
-            <Link to={"/register"}>
-              <p>Регистрация</p>
-            </Link>
-          </div>
+          <div>{menu}</div>
         </div>
       </div>
     </header>

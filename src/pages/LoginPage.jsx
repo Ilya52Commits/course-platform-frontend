@@ -1,16 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function LoginPage() {
+LoginPage.propTypes = {
+  setName: PropTypes.func.isRequired,
+};
+
+export default function LoginPage(props) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:8000/api/login", {
+    const response = await fetch("http://localhost:8000/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -20,8 +26,15 @@ export default function LoginPage() {
       }),
     });
 
-    return navigate("/");
+    const connect = await response.json();
+
+    props.setName(connect.name);
+    setRedirect(true);
   };
+
+  if (redirect) {
+    return navigate("/");
+  }
 
   return (
     <>

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header.jsx";
@@ -7,15 +9,30 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
 export default function App() {
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("http://localhost:8000/api/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+
+      const connect = await response.json();
+
+      setName(connect.name);
+    })();
+  });
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header name={name} setName={setName} />
 
         <main>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={<HomePage name={name} />} />
+            <Route path="/login" element={<LoginPage setName={setName} />} />
             <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </main>
