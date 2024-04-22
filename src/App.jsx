@@ -7,6 +7,7 @@ import Header from "./components/Header.jsx";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ConfirmationPage from "./pages/ConfirmationPage.jsx";
 
 export default function App() {
   const [name, setName] = useState("");
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/" element={<HomePage name={name} />} />
             <Route path="/login" element={<LoginPage setName={setName} />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/confirm" element={<ConfirmationPage />} />
           </Routes>
         </main>
       </BrowserRouter>
