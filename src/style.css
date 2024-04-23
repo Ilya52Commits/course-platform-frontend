@@ -1,0 +1,182 @@
+@charset "UTF-8";
+/* Базовые стили */
+@font-face {
+  font-family: "Inter";
+  src: url("/src/fonts/Inter/Inter-Medium.eot");
+  src: local("Inter Medium"), local("Inter-Medium"), url("/src/fonts/Inter/Inter-Medium.eot?#iefix") format("embedded-opentype"), url("/src/fonts/Inter/Inter-Medium.woff2") format("woff2"), url("/src/fonts/Inter/Inter-Medium.woff") format("woff"), url("/src/fonts/Inter/Inter-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+h1 {
+  font-size: 35px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+header {
+  box-shadow: 1px 1px 5px #000;
+}
+
+.container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.error-message {
+  margin: -10px 0 0 10px;
+  font-size: 14px;
+  color: red;
+}
+
+/* Стилизация компонентов страницы */
+/* Стилизация центрированной страницы */
+/* Стилизация блока входа/регистрации */
+/* HomePage */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0 15px 0;
+  height: 30px;
+}
+.header-content-logo {
+  display: flex;
+  align-items: center;
+}
+.header-content-logo img {
+  width: 35px;
+}
+.header-content-logo p {
+  margin-left: 5px;
+  font-size: 19px;
+}
+.header-content .header-navigation {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  width: 170px;
+}
+.header-content .header-navigation p {
+  font-size: 15px;
+}
+
+.main-content {
+  margin-top: 9rem;
+}
+.main-content .buttons-main {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width: 400px;
+}
+.main-content .buttons-main button {
+  padding: 12px 10px 12px 10px;
+  width: 10rem;
+  background: #ffa113;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Login */
+.sign-in {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sign-in .sign-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 410px;
+  box-shadow: 1px 1px 5px #000;
+  border-radius: 15px;
+}
+.sign-in .sign-block .sign-content {
+  width: 377px;
+}
+.sign-in .sign-block .sign-content form input[type=text],
+.sign-in .sign-block .sign-content form [type=password] {
+  width: 345px;
+  height: 32px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  margin: 1rem 0 1rem 0;
+  outline: none;
+  padding: 1rem;
+  background: #e4e4e4;
+}
+.sign-in .sign-block .sign-content form input[type=submit] {
+  padding: 12px 10px 12px 10px;
+  width: 100%;
+  background: #ffa113;
+  border: none;
+  border-radius: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Register */
+.sign {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sign h3 {
+  font-size: 23px;
+}
+.sign .sign-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  box-shadow: 1px 1px 5px #000;
+  border-radius: 15px;
+}
+.sign .sign-block .sign-content {
+  width: 377px;
+}
+.sign .sign-block .sign-content form input[type=text],
+.sign .sign-block .sign-content form [type=password] {
+  width: 345px;
+  height: 32px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  margin: 1rem 0 1rem 0;
+  outline: none;
+  padding: 1rem;
+  background: #e4e4e4;
+}
+.sign .sign-block .sign-content form input[type=submit] {
+  padding: 12px 10px 12px 10px;
+  width: 100%;
+  background: #ffa113;
+  border: none;
+  border-radius: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */

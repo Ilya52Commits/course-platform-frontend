@@ -9,6 +9,9 @@ LoginPage.propTypes = {
 export default function LoginPage(props) {
   const navigate = useNavigate();
 
+  const HOST = "localhost:8000";
+  const END_POINT = "/api/login";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState("");
@@ -16,7 +19,7 @@ export default function LoginPage(props) {
   const submit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:8000/api/login", {
+    const response = await fetch(`http://${HOST}${END_POINT}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

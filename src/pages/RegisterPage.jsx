@@ -4,29 +4,41 @@ import { useNavigate } from "react-router-dom";
 export default function RegisterPage() {
   const navigate = useNavigate();
 
+  const HOST = "localhost:8000";
+  const END_POINT = "/api/register";
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [redirect, setRedirect] = useState("");
+  const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState(null);
 
   const submit = async (e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:8000/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
-    });
+    try {
+      const response = await fetch(`http://${HOST}${END_POINT}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
 
-    setRedirect(true);
+      if (!response.ok) {
+        throw new Error("Неправильный формат почты!");
+      }
+
+      setRedirect(true);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   if (redirect) {
-    return navigate("/login");
+    return navigate("/confirm");
   }
 
   return (
@@ -37,6 +49,7 @@ export default function RegisterPage() {
             <div className="sign-block">
               <div className="sign-content">
                 <h3>Пожалуйста зарегистрируйтесь!</h3>
+
                 <form onSubmit={submit}>
                   <input
                     type="text"
@@ -48,6 +61,7 @@ export default function RegisterPage() {
                     placeholder="Email"
                     onChange={(e) => setEmail(e.target.value)}
                   />
+                  {error && <p className="error-message">{error}</p>}
                   <input
                     type="password"
                     placeholder="Пароль"

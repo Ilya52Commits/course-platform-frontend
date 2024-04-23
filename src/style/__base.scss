@@ -47,6 +47,12 @@ header {
   margin: 0 auto;
 }
 
+.error-message {
+  margin: -10px 0 0 10px;
+  font-size: 14px;
+  color: red;
+}
+
 /* Стилизация компонентов страницы */
 // Стилизация кнопок сайта
 @mixin btn($width, $value-width, $font-size, $font-size-value) {
