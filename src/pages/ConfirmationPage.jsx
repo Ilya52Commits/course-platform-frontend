@@ -5,11 +5,12 @@ export default function ConfirmationPage() {
   const navigate = useNavigate();
 
   const [code, setCode] = useState("");
-  const [redirect, setRedirect] = useState(false);
+  //const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState("");
 
   const HOST = "localhost:8000";
-  const END_POINT = "/api/register";
+  const END_POINT = "/api/mail-confirm";
 
   const submit = async (e) => {
     e.preventDefault();
@@ -23,19 +24,24 @@ export default function ConfirmationPage() {
         }),
       });
 
+      const data = await response.json(); // Преобразование ответа в формат JSON
+
       if (!response.ok) {
-        throw new Error("Неправильный код!");
+        throw new Error(data.message);
       }
 
-      setRedirect(true);
+      setMessage(data.message);
+      //setRedirect(false);
     } catch (error) {
       setError(error.message);
     }
   };
 
-  if (redirect) {
-    return navigate("/login");
-  }
+  const submitNavigate = async () => {
+    if (message === "почта подтверждена") {
+      navigate("/login");
+    }
+  };
 
   return (
     <>
@@ -51,9 +57,11 @@ export default function ConfirmationPage() {
                     placeholder="XXXXX"
                     onChange={(e) => setCode(e.target.value)}
                   />
+                  {<p>{message}</p>}
                   {error && <p className="error-message">{error}</p>}
                   <input type="submit" value={"Подтвердить"} />
                 </form>
+                <button onClick={submitNavigate}>Авторизоваться</button>
               </div>
             </div>
           </div>

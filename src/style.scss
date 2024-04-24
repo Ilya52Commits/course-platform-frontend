@@ -55,6 +55,10 @@
 
     .sign-content {
       @include sign-content;
+      button {
+        @include btn(width, 100%, font-size, 24px);
+        margin-top: 1rem;
+      }
     }
   }
 }
@@ -71,6 +75,10 @@
 
     .sign-content {
       @include sign-content;
+      button {
+        @include btn(width, 100%, font-size, 24px);
+        margin-top: 1rem;
+      }
     }
   }
 }
