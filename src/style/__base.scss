@@ -56,6 +56,7 @@ header {
 /* Стилизация компонентов страницы */
 // Стилизация кнопок сайта
 @mixin btn($width, $value-width, $font-size, $font-size-value) {
+  margin-top: 1rem;
   padding: 12px 10px 12px 10px;
   #{$width}: $value-width;
   background: #ffa113;

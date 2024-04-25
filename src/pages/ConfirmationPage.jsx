@@ -5,8 +5,7 @@ export default function ConfirmationPage() {
   const navigate = useNavigate();
 
   const [code, setCode] = useState("");
-  //const [redirect, setRedirect] = useState(false);
-  const [error, setError] = useState(null);
+  const [repeat, setRepeat] = useState("");
   const [message, setMessage] = useState("");
 
   const HOST = "localhost:8000";
@@ -15,33 +14,34 @@ export default function ConfirmationPage() {
   const submit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(`http://${HOST}${END_POINT}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          code,
-        }),
-      });
+    const response = await fetch(`http://${HOST}${END_POINT}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        code,
+        repeat,
+      }),
+    });
 
-      const data = await response.json(); // Преобразование ответа в формат JSON
+    setRepeat("");
 
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
+    const data = await response.json();
 
-      setMessage(data.message);
-      //setRedirect(false);
-    } catch (error) {
-      setError(error.message);
-    }
+    setMessage(data.message);
   };
 
-  const submitNavigate = async () => {
-    if (message === "почта подтверждена") {
+  const repeatMail = async () => {
+    setRepeat("yes");
+  };
+
+  const asyncFunction = async () => {
+    if (message === "Почта подтверждена") {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate("/login");
     }
   };
+
+  asyncFunction();
 
   return (
     <>
@@ -58,10 +58,16 @@ export default function ConfirmationPage() {
                     onChange={(e) => setCode(e.target.value)}
                   />
                   {<p>{message}</p>}
-                  {error && <p className="error-message">{error}</p>}
-                  <input type="submit" value={"Подтвердить"} />
+                  <input
+                    type="submit"
+                    value={repeat !== "" ? "Отправить повторно" : "Подтвердить"}
+                  />
                 </form>
-                <button onClick={submitNavigate}>Авторизоваться</button>
+                {message !== "Почта подтверждена" ? (
+                  <button onClick={repeatMail}>Повторить отправку</button>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

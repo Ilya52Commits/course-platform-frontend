@@ -14,7 +14,7 @@ export default function LoginPage(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [redirect, setRedirect] = useState("");
+  const [message, setMessage] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
@@ -31,13 +31,24 @@ export default function LoginPage(props) {
 
     const connect = await response.json();
 
+    setMessage(connect.message);
+
+    if (!response.ok) throw new Error(message);
+
     props.setName(connect.name);
-    setRedirect(true);
   };
 
-  if (redirect) {
-    return navigate("/");
-  }
+  const asyncFunction = async () => {
+    if (message === "Успешно") {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      navigate("/");
+    } else if (message === "Вы не подтвердили почту") {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      navigate("/register");
+    }
+  };
+
+  asyncFunction();
 
   return (
     <>
@@ -58,6 +69,7 @@ export default function LoginPage(props) {
                     placeholder="Пароль"
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  {<p>{message}</p>}
                   <input type="submit" value={"Войти"} />
                 </form>
               </div>

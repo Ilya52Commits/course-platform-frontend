@@ -11,35 +11,35 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(`http://${HOST}${END_POINT}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
+    const response = await fetch(`http://${HOST}${END_POINT}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
 
-      if (!response.ok) {
-        throw new Error("Неправильный формат почты!");
-      }
+    const data = await response.json();
 
+    setMessage(data.message);
+
+    if (message === "Почта не коректная") {
+      setRedirect(false);
+    } else {
       setRedirect(true);
-    } catch (error) {
-      setError(error.message);
     }
   };
 
-  if (redirect) {
-    return navigate("/confirm");
-  }
+  const asyncFunction = () => (redirect ? navigate("/confirm") : "");
+
+  asyncFunction();
 
   return (
     <>
@@ -61,12 +61,12 @@ export default function RegisterPage() {
                     placeholder="Email"
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  {error && <p className="error-message">{error}</p>}
                   <input
                     type="password"
                     placeholder="Пароль"
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  {<p>{message}</p>}
                   <input type="submit" value={"Зарегистрироваться"} />
                 </form>
               </div>

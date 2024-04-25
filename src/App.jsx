@@ -10,11 +10,14 @@ import RegisterPage from "./pages/RegisterPage";
 import ConfirmationPage from "./pages/ConfirmationPage.jsx";
 
 export default function App() {
+  const HOST = "localhost:8000";
+  const END_POINT = "/api/user";
+
   const [name, setName] = useState("");
 
   useEffect(() => {
     (async () => {
-      const response = await fetch("http://localhost:8000/api/user", {
+      const response = await fetch(`http://${HOST}${END_POINT}`, {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });

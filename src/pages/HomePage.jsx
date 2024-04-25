@@ -8,7 +8,7 @@ export default function HomePage(props) {
   let content;
 
   if (!props.name) {
-    content = "You are not login in";
+    content = "Вы не вошли в аккаунт!";
   } else {
     content = (
       <div className="container">
