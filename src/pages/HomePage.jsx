@@ -1,10 +1,30 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 HomePage.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
 export default function HomePage(props) {
+  const navigate = useNavigate();
+
+  const [typePage, setTypePage] = useState(""); 
+  
+  const navigateToCrate = async () => {
+    setTypePage("create");
+  }
+  const navigateToOpen = async () => {
+    setTypePage("open");
+  }
+
+  const navigateToPage = async () => {
+    if (typePage === "create") navigate("/create-course");
+    else if (typePage === "open") navigate("/open-courses")
+  }
+
+  navigateToPage()
+
   let content;
 
   if (!props.name) {
@@ -15,8 +35,8 @@ export default function HomePage(props) {
         <div className="main-content">
           <h1>Разместите свои курсы</h1>
           <div className="buttons-main">
-            <button>Создать курс</button>
-            <button>Открыть курс</button>
+            <button onClick={navigateToCrate}>Создать курс</button>
+            <button onClick={navigateToOpen}>Открыть курс</button>
           </div>
         </div>
       </div>

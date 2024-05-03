@@ -67,9 +67,9 @@ header {
 }
 
 // Стилизация полей ввода текста
-@mixin input-text {
+@mixin input-text($value-height) {
   width: 345px;
-  height: 32px;
+  height: $value-height;
   font-size: 20px;
   border: none;
   border-radius: 10px;
@@ -106,7 +106,11 @@ header {
   form {
     input[type="text"],
     [type="password"] {
-      @include input-text;
+      @include input-text(32px);
+    }
+    textarea {
+      @include input-text(150px);
+      resize:none;
     }
     input[type="submit"] {
       @include btn(width, 100%, font-size, 24px);

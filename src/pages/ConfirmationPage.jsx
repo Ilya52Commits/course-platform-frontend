@@ -34,14 +34,14 @@ export default function ConfirmationPage() {
     setRepeat("yes");
   };
 
-  const asyncFunction = async () => {
+  const navigateToPage = async () => {
     if (message === "Почта подтверждена") {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate("/login");
     }
   };
 
-  asyncFunction();
+  navigateToPage();
 
   return (
     <>

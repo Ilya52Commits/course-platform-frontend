@@ -82,3 +82,11 @@
     }
   }
 }
+
+/* Create course */
+.create-course-block {
+  @include center-page;
+  &-content{
+    @include sign-content;
+  }
+}
