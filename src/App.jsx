@@ -42,7 +42,10 @@ export default function App() {
             <Route path="/login" element={<LoginPage setName={setName} />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/confirm" element={<ConfirmationPage />} />
-            <Route path="/create-course" element={<CreateCoursePage />} />
+            <Route
+              path="/create-course"
+              element={<CreateCoursePage name={name} />}
+            />
             <Route path="/open-courses" element={<OpenCoursePage />} />
             <Route path="/course-page" element={<CoursePage />} />
           </Routes>
