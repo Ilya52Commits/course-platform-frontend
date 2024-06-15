@@ -17,10 +17,12 @@ export default function App() {
   const END_POINT = "/api/user";
 
   const [name, setName] = useState("");
+  const [course, setCourse] = useState("");
 
   useEffect(() => {
     (async () => {
       const response = await fetch(`http://${HOST}${END_POINT}`, {
+        method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
@@ -44,10 +46,13 @@ export default function App() {
             <Route path="/confirm" element={<ConfirmationPage />} />
             <Route
               path="/create-course"
-              element={<CreateCoursePage name={name} />}
+              element={<CreateCoursePage setCourse={setCourse} />}
             />
             <Route path="/open-courses" element={<OpenCoursePage />} />
-            <Route path="/course-page" element={<CoursePage />} />
+            <Route
+              path="/course-page"
+              element={<CoursePage course={course} />}
+            />
           </Routes>
         </main>
       </BrowserRouter>

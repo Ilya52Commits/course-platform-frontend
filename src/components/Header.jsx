@@ -7,8 +7,11 @@ Header.propTypes = {
 };
 
 export default function Header(props) {
+  const HOST = "localhost:8000";
+  const END_POINT = "/api/logout";
+
   const logout = async () => {
-    await fetch("http://localhost:8000/api/logout", {
+    await fetch(`http://${HOST}${END_POINT}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

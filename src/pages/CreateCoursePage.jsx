@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 CreateCoursePage.propTypes = {
-  name: PropTypes.string.isRequired,
+  setCourse: PropTypes.func.isRequired,
 };
 
-export default function CreateCoursePage() {
+export default function CreateCoursePage(props) {
   const navigate = useNavigate();
 
   const HOST = "localhost:8000";
@@ -22,6 +22,8 @@ export default function CreateCoursePage() {
     const response = await fetch(`http://${HOST}${END_POINT}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include", // Опция credentials указывает, должен ли fetch
+      // отправлять куки и авторизационные заголовки HTTP вместе с запросом. "include" – отправлять всегда,
       body: JSON.stringify({
         nameCourse,
         descriptionCourse,
@@ -35,6 +37,7 @@ export default function CreateCoursePage() {
 
   const navigateToPage = async () => {
     if (message === "Курс успешно создан") {
+      props.setCourse(nameCourse);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate("/course-page");
     }

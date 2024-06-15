@@ -86,7 +86,53 @@
 /* Create course */
 .create-course-block {
   @include center-page;
-  &-content{
+  &-content {
     @include sign-content;
+  }
+}
+
+/* Course page */
+.course-page {
+  @include center-page;
+  h2 {
+    font-size: 40px;
+  }
+  text-align: center;
+  &-content {
+    width: 600px;
+    form {
+      margin-top: 10px;
+    }
+    input {
+      margin-left: 10px;
+      background: #e4e4e4;
+      border: none;
+      outline: none;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }
+  .course-modules-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0 0 0;
+    padding: 10px;
+    height: 35px;
+    background: rgb(233, 233, 233);
+    border-radius: 10px;
+  }
+  .module-btns {
+    width: 60px;
+    display: flex;
+    justify-content: space-between;
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    img {
+      width: 25px;
+    }
   }
 }
