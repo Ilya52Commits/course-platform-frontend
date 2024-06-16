@@ -39,7 +39,7 @@ export default function CreateCoursePage(props) {
     if (message === "Курс успешно создан") {
       props.setCourse(nameCourse);
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigate("/course-page");
+      navigate("/create-module");
     }
   };
 

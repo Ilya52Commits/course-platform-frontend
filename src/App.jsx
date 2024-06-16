@@ -10,7 +10,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ConfirmationPage from "./pages/ConfirmationPage.jsx";
 import CreateCoursePage from "./pages/CreateCoursePage.jsx";
 import OpenCoursePage from "./pages/OpenCoursePage.jsx";
-import CoursePage from "./pages/CoursePage.jsx";
+import CreateModulePage from "./pages/CreateModulePage.jsx";
 
 export default function App() {
   const HOST = "localhost:8000";
@@ -50,8 +50,8 @@ export default function App() {
             />
             <Route path="/open-courses" element={<OpenCoursePage />} />
             <Route
-              path="/course-page"
-              element={<CoursePage course={course} />}
+              path="/create-module"
+              element={<CreateModulePage course={course} />}
             />
           </Routes>
         </main>

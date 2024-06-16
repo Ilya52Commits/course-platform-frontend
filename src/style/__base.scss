@@ -93,8 +93,9 @@ header {
 
 /* Стилизация центрированной страницы */
 @mixin center-page {
+  margin: 4rem 0 4rem 0;
   width: 100%;
-  height: 90vh;
+ //height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
