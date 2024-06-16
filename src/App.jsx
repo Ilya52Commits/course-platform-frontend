@@ -53,6 +53,10 @@ export default function App() {
               path="/create-module"
               element={<CreateModulePage course={course} />}
             />
+            <Route 
+              path="/course-page" 
+              element={<OpenCoursePage course={course}/>}
+            />
           </Routes>
         </main>
       </BrowserRouter>

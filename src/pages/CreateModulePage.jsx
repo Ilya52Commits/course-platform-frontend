@@ -41,7 +41,6 @@ export default function CoursePage(props) {
         if (getResponse.ok) {
             const data = await getResponse.json();
             const modules = data.map((module) => module["name"]);
-            console.log(modules)
             setArrayModules(modules);
         }
       }

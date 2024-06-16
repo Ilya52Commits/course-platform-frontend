@@ -136,3 +136,26 @@
     }
   }
 }
+
+/* Open course */ 
+.open-courses {
+  margin-top: 4rem;
+  .list-courses{ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 2rem;
+    list-style-type: none;
+    .courses-item {
+      box-shadow: 1px 1px 5px #000;
+      border-radius: 1rem;
+      padding: 2rem 1rem 1rem 1rem;
+      width: 200px;
+      height: 30vh;
+      button{ 
+        @include btn(width, 100%, font-size, 15px);
+        margin-top: 4rem;
+      }
+    }
+  }
+}
