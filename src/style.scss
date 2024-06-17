@@ -91,8 +91,8 @@
   }
 }
 
-/* Course page */
-.course-page {
+/* Create module */
+.create-module-page {
   @include center-page;
   h2 {
     font-size: 40px;
@@ -112,7 +112,7 @@
       border-radius: 10px;
     }
   }
-  .course-modules-item {
+  .created-modules-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -156,6 +156,129 @@
         @include btn(width, 100%, font-size, 15px);
         margin-top: 4rem;
       }
+    }
+  }
+}
+
+/* Course page */
+.course-page {
+  @include center-page;
+  h2 {
+    font-size: 40px;
+  }
+  text-align: center;
+  &-content {
+    width: 600px;
+  }
+  .course-modules-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0 0 0;
+    padding: 10px;
+    height: 35px;
+    background: rgb(233, 233, 233);
+    border-radius: 10px;
+    button {
+      @include btn(width, 100%, font-size, 15px);
+      margin-top: 0;
+    }
+  }
+}
+
+/* Create lesson page */
+.create-lesson-page {
+  @include center-page;
+  h2 {
+    font-size: 40px;
+  }
+  text-align: center;
+  &-content {
+    width: 600px;
+    form {
+      margin-top: 10px;
+      .input-lesson {
+        margin: 0 auto;
+        width: 450px;
+        text-align: left;
+        #input-tast {
+          margin-top: 1rem;
+          input {
+            margin-left: 4.2rem;
+          }
+        }
+        #input-url-video {
+          margin-top: 1rem;
+          input {
+            margin-left: 2.1rem;
+          }
+        }
+      }
+    }
+    input {
+      margin-left: 10px;
+      background: #e4e4e4;
+      border: none;
+      outline: none;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }
+  .created-lessons-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0 0 0;
+    padding: 10px;
+    height: 35px;
+    background: rgb(233, 233, 233);
+    border-radius: 10px;
+  }
+  .lesson-btns {
+    width:120px;
+    display: flex;
+    justify-content: space-between;
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    img {
+      width: 25px;
+    }
+    #open-lesson {
+      @include btn(width, 100, font-size, 15px);
+      margin-top: 0;
+    }
+  }
+}
+
+/* Lesson page */
+.lesson-page {
+  @include center-page;
+  margin-top: 2rem;
+  h1 {
+    margin-bottom: 1rem;
+    font-size: 40px;
+  }
+  text-align: center;
+  &-content {
+    width: 600px;
+  }
+  .lesson-task {
+    margin-top: 5rem;
+    text-align: left;
+    p {
+      margin: 1rem;
+    }
+    textarea {
+      @include input-text(150px);
+      width: 100%;
+      font-size: 15px;
+      resize: none;
+    }
+    button {
+      @include btn(width, 100, font-size, 20px);
     }
   }
 }

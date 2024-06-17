@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 CoursePage.propTypes = {
   course: PropTypes.string.isRequired,
+  setModule: PropTypes.func.isRequired,
 };
 
 export default function CoursePage(props) {
+  const navigate = useNavigate();
+
   const [nameModule, setNameModule] = useState("");
   const [arrayModules, setArrayModules] = useState([]);
   
@@ -46,13 +50,18 @@ export default function CoursePage(props) {
       }
     };
 
+    const editModule = async (nameSelectedModule) => {
+      props.setModule(nameSelectedModule);
+      navigate("/create-lesson");
+    }
 
-  return (
+
+    return (
     <>
       <main>
         <div className="container">
-          <div className="course-page">
-            <div className="course-page-content">
+          <div className="create-module-page">
+            <div className="create-module-page-content">
               <h2>Курс: {props.course.toUpperCase()}</h2>
               <h3>Добавление модуля курса</h3>
               <form>
@@ -67,12 +76,12 @@ export default function CoursePage(props) {
                   <img src="/src/assets/images/plus.svg" alt="logo" />
                 </button>
               </form>
-              <ul className="course-modules">
+              <ul className="created-modules">
                 {arrayModules.map((module, index) => (
-                  <li key={index} className="course-modules-item">
+                  <li key={index} className="created-modules-item">
                     <p>{module}</p>
                     <div className="module-btns">
-                      <button>
+                      <button onClick={() => editModule(module)}>
                         <img src="/src/assets/images/edit-text.svg" />
                       </button>
                       <button>

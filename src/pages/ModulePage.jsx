@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-CoursePage.propTypes = {
-  course: PropTypes.string.isRequired,
-  setModule: PropTypes.func.isRequired,
+ModulePage.propTypes = {
+  module: PropTypes.string.isRequired,
+  setLesson: PropTypes.func.isRequired,
 };
 
-export default function CoursePage(props) {
+export default function ModulePage(props) {
   const navigate = useNavigate();
 
-  const [arrayModules, setArrayModules] = useState([]);
+  const [arrayLesson, setArrayLesson] = useState([]);
 
   const HOST = "localhost:8000";
-  const END_POINT_GET_MODULES = "/api/get-modules";
+  const END_POINT_GET_MODULES = "/api/get-lessons";
 
-  let nameCourse = props.course
+  let nameModule = props.module
 
   useEffect(() => {
     (async () => {
@@ -24,21 +24,21 @@ export default function CoursePage(props) {
           headers: { "Content-Type": "application/json" },
           credentials: "include",
           body: JSON.stringify({
-            nameCourse,
+            nameModule,
           }),
         });
 
       if (getResponse.ok) {
         const data = await getResponse.json();
-        const modules = data.map((module) => module["name"]);
-        setArrayModules(modules);
+        const lessons = data.map((lesson) => lesson["name"]);
+        setArrayLesson(lessons);
       }
     })();
   }, []); // Добавьте пустой массив зависимостей, чтобы эффект выполнялся только один раз при загрузке страницы
 
-  const openModule = (module) => {
-    props.setLesson(module)
-    navigate("/module-page")
+  const openLesson = (lesson) => {
+    props.setLesson(lesson)
+    navigate("/lesson-page")
   }
 
   return (
@@ -47,13 +47,13 @@ export default function CoursePage(props) {
         <div className="container">
           <div className="course-page">
             <div className="course-page-content">
-              <h2>Курс: {props.course.toUpperCase()}</h2>
+              <h2>Модуль: {props.module.toUpperCase()}</h2>
               <ul className="course-modules">
-                {arrayModules.map((module, index) => (
+                {arrayLesson.map((lesson, index) => (
                   <li key={index} className="course-modules-item">
-                    <p>{module}</p>
+                    <p>{lesson}</p>
                     <div className="module-btns">
-                      <button onClick={() => openModule(module)}>
+                      <button onClick={() => openLesson(lesson)}>
                         смотреть
                       </button>
                     </div>

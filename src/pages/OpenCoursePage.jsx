@@ -1,28 +1,26 @@
 import { useEffect, useState } from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-CoursePage.propTypes = {
+OpenCoursePage.propTypes = {
   course: PropTypes.string.isRequired,
   setCourse: PropTypes.func.isRequired,
 };
 
-export default function OpenCoursePage() {
+export default function OpenCoursePage(proprs) {
   const navigate = useNavigate();
+
   const [arrayCourses, setArrayCourses] = useState([]);
-  const [course, setCourse] = useState("");
 
   const HOST = "localhost:8000";
   const END_POINT = "/api/get-courses";
-
-  let nameCourse = props.course;
 
   useEffect(() => {
     (async () => {
       const response = await fetch(`http://${HOST}${END_POINT}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
+        
       });
 
       if (response.ok) {
@@ -33,11 +31,11 @@ export default function OpenCoursePage() {
     })();
   }, []); // Добавьте пустой массив зависимостей, чтобы эффект выполнялся только один раз при загрузке страницы
 
-  const clickShow = () => {
-    setCourse()
-          navigate("/");
-    
-  }
+   
+  const clickShow = async (nameSelectedCourse) => {   
+    proprs.setCourse(nameSelectedCourse);
+    navigate("/course-page");
+  };
 
   return (
     <>
@@ -50,11 +48,11 @@ export default function OpenCoursePage() {
                 {arrayCourses.map((course, index) => (
                   <li key={index} className="courses-item">
                     <h3>{course.toUpperCase()}</h3>
-                    <button onClick={clickShow}>Смотреть</button>
+                    <button onClick={() => clickShow(course)}>Смотреть</button>
                   </li>
                 ))}
               </ul>
-            </div>
+            </div>  
           </div>
         </div>
       </main>
