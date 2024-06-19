@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 CreateCoursePage.propTypes = {
   setCourse: PropTypes.func.isRequired,
+  setNameCourse: PropTypes.func.isRequired,
 };
 
 export default function CreateCoursePage(props) {
@@ -30,14 +31,17 @@ export default function CreateCoursePage(props) {
       }),
     });
 
-    const data = await response.json();
-
-    setMessage(data.message);
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data["id"])
+      props.setCourse(String(data["id"]))
+      props.setNameCourse(data["name"]);
+      setMessage("Курс успешно создан");
+    }
   };
 
   const navigateToPage = async () => {
     if (message === "Курс успешно создан") {
-      props.setCourse(nameCourse);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate("/create-module");
     }

@@ -4,17 +4,18 @@ import ReactPlayer from 'react-player';
 
 LessonPage.propTypes = {
     module: PropTypes.string.isRequired,
-    lesson: PropTypes.string.isRequired,
+    lessonId: PropTypes.string.isRequired,
 };
 
 export default function LessonPage(props) {
+    const [nameLesson, setNameLesson] = useState("")
     const [urlLesson, setUrlLesson] = useState("");
     const [taskLesson, setTaskLesson] = useState("");
 
     const HOST = "localhost:8000" 
     const END_POINT = "/api/get-lesson"
 
-    let nameModule = props.module;
+    let idLesson = props.lessonId;
 
     useEffect(() => {
     (async () => {
@@ -23,11 +24,12 @@ export default function LessonPage(props) {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({
-            nameModule,
+            idLesson,
           }),
       });
 
       const data = await response.json();
+      setNameLesson(data["name"])
       setUrlLesson(data["video"])
       setTaskLesson(data["task"])
     })();
@@ -39,11 +41,10 @@ export default function LessonPage(props) {
         <div className="container">
           <div className="lesson-page">
             <div className="lesson-page-content">
-              <h1>{props.lesson}</h1>
+              <h1>{nameLesson}</h1>
               <div className="lesson-video">
                 <ReactPlayer url={urlLesson} />
               </div>
-
               <div className="lesson-task">
                 <h3>
                     Задание: 

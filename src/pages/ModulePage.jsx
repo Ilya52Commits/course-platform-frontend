@@ -3,19 +3,20 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 ModulePage.propTypes = {
-  module: PropTypes.string.isRequired,
+  moduleId: PropTypes.string.isRequired,
+  nameModule: PropTypes.string.isRequired,
   setLesson: PropTypes.func.isRequired,
 };
 
 export default function ModulePage(props) {
   const navigate = useNavigate();
 
-  const [arrayLesson, setArrayLesson] = useState([]);
+  const [arrayLessons, setArrayLessons] = useState({});
 
   const HOST = "localhost:8000";
   const END_POINT_GET_MODULES = "/api/get-lessons";
 
-  let nameModule = props.module
+  let idModule = props.moduleId
 
   useEffect(() => {
     (async () => {
@@ -24,20 +25,24 @@ export default function ModulePage(props) {
           headers: { "Content-Type": "application/json" },
           credentials: "include",
           body: JSON.stringify({
-            nameModule,
+            idModule,
           }),
         });
 
       if (getResponse.ok) {
         const data = await getResponse.json();
-        const lessons = data.map((lesson) => lesson["name"]);
-        setArrayLesson(lessons);
+          const lessons = {};
+          data.forEach((lesson) => {
+                lessons[lesson.id] = lesson.name;
+              });
+          setArrayLessons(lessons);
       }
     })();
   }, []); // Добавьте пустой массив зависимостей, чтобы эффект выполнялся только один раз при загрузке страницы
 
-  const openLesson = (lesson) => {
-    props.setLesson(lesson)
+  const openLesson = (idLesson) => {
+    console.log(idLesson)
+    props.setLesson(idLesson)
     navigate("/lesson-page")
   }
 
@@ -47,13 +52,13 @@ export default function ModulePage(props) {
         <div className="container">
           <div className="course-page">
             <div className="course-page-content">
-              <h2>Модуль: {props.module.toUpperCase()}</h2>
+              <h2>Модуль: {props.nameModule.toUpperCase()}</h2>
               <ul className="course-modules">
-                {arrayLesson.map((lesson, index) => (
-                  <li key={index} className="course-modules-item">
-                    <p>{lesson}</p>
+                {Object.keys(arrayLessons).map((lessonId) => (
+                  <li key={lessonId} className="course-modules-item">
+                    <p>{arrayLessons[lessonId]}</p>
                     <div className="module-btns">
-                      <button onClick={() => openLesson(lesson)}>
+                      <button onClick={() => openLesson(lessonId)}>
                         смотреть
                       </button>
                     </div>

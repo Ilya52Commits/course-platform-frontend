@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 CoursePage.propTypes = {
-  course: PropTypes.string.isRequired,
+  courseId: PropTypes.string.isRequired,
+  nameCourse: PropTypes.string.isRequired,
+  setNameModule: PropTypes.func.isRequired,
   setModule: PropTypes.func.isRequired,
 };
 
@@ -11,7 +13,7 @@ export default function CoursePage(props) {
   const navigate = useNavigate();
 
   const [nameModule, setNameModule] = useState("");
-  const [arrayModules, setArrayModules] = useState([]);
+  const [arrayModules, setArrayModules] = useState({});
   
   const addModule = async (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function CoursePage(props) {
     const END_POINT = "/api/create-module";
     const END_POINT_GET_MODULES = "/api/get-modules";
 
-    let nameCourse = props.course;
+    let idCourse = props.courseId;
 
     const postResponse = await fetch(`http://${HOST}${END_POINT}`, {
         method: "POST",
@@ -28,7 +30,7 @@ export default function CoursePage(props) {
         credentials: "include",
         body: JSON.stringify({
             nameModule,
-            nameCourse,
+            idCourse,
         }),
     });
 
@@ -38,23 +40,27 @@ export default function CoursePage(props) {
             headers: { "Content-Type": "application/json" },
             credentials: "include",
             body: JSON.stringify({
-              nameCourse,
+              idCourse,
             }),
         });
 
         if (getResponse.ok) {
             const data = await getResponse.json();
-            const modules = data.map((module) => module["name"]);
+            const modules = {};
+            data.forEach((module) => {
+              modules[module.id] = module.name
+            });
             setArrayModules(modules);
         }
       }
     };
 
-    const editModule = async (nameSelectedModule) => {
-      props.setModule(nameSelectedModule);
+    const editModule = async (idModule, nameModule) => {
+      props.setModule(idModule);
+      console.log(nameModule)
+      props.setNameModule(nameModule)
       navigate("/create-lesson");
     }
-
 
     return (
     <>
@@ -62,7 +68,7 @@ export default function CoursePage(props) {
         <div className="container">
           <div className="create-module-page">
             <div className="create-module-page-content">
-              <h2>Курс: {props.course.toUpperCase()}</h2>
+              <h2>Курс: {props.nameCourse}</h2>
               <h3>Добавление модуля курса</h3>
               <form>
                 <div>
@@ -77,11 +83,11 @@ export default function CoursePage(props) {
                 </button>
               </form>
               <ul className="created-modules">
-                {arrayModules.map((module, index) => (
-                  <li key={index} className="created-modules-item">
-                    <p>{module}</p>
+                {Object.keys(arrayModules).map((moduleId) => (
+                  <li key={moduleId} className="created-modules-item">
+                    <p>{arrayModules[moduleId]}</p>
                     <div className="module-btns">
-                      <button onClick={() => editModule(module)}>
+                      <button onClick={() => editModule(moduleId, arrayModules[moduleId])}>
                         <img src="/src/assets/images/edit-text.svg" />
                       </button>
                       <button>

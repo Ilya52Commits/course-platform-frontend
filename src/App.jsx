@@ -21,9 +21,14 @@ export default function App() {
   const END_POINT = "/api/user";
 
   const [name, setName] = useState("");
-  const [course, setCourse] = useState("");
-  const [module, setModule] = useState("");
-  const [lesson, setLesson] = useState("");
+
+  const [courseId, setCourse] = useState("");
+  const [nameCourse, setNameCourse] = useState("");
+
+  const [moduleId, setModule] = useState("");
+  const [nameModule, setNameModule] = useState("");
+
+  const [lessonId, setLesson] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -53,41 +58,50 @@ export default function App() {
             <Route
               path="/create-course"
               element={<CreateCoursePage 
-              setCourse={setCourse}/>}
+              setCourse={setCourse}
+              setNameCourse={setNameCourse}/>}
             />
             <Route 
               path="/open-courses" 
               element={<OpenCoursePage 
               name={name} 
+              setNameCourse={setNameCourse}
               setCourse={setCourse}/>} 
             />
             <Route
               path="/create-module"
               element={<CreateModulePage 
-              course={course} 
+              courseId={courseId} 
+              nameCourse={nameCourse}
+              setNameModule={setNameModule}
               setModule={setModule}/>}
             />
             <Route 
               path="/course-page" 
               element={<CoursePage 
-              course={course}
-              setLesson={setModule}/>}
+              courseId={courseId}
+              nameCourse={nameCourse}
+              setNameModule={setNameModule}
+              setModule={setModule}/>}
             />
             <Route 
               path="/create-lesson" 
               element={<CreateLessonPage 
-              module={module}
+              moduleId={moduleId}
+              nameModule={nameModule}
               setLesson={setLesson}/>}
             />
             <Route path="/module-page"
               element={<ModulePage 
-              module={module}
+              moduleId={moduleId}
+              nameModule={nameModule}
               setLesson={setLesson}/>} />
             <Route 
               path="/lesson-page"
               element={<LessonPage 
-                module={module}
-              lesson={lesson}/>}
+              module={moduleId}
+              nameModule={nameModule}
+              lessonId={lessonId}/>}
             />
           </Routes>
         </main>
